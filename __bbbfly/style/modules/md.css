@@ -69,6 +69,7 @@
   padding: 0.25em;
   border-radius: 0.5em;
   background-clip: text;
+  -webkit-background-clip: text;
   background-image: linear-gradient(200grad, #11d900, #14ffd3);
   color: transparent;
   border: 1em solid #181a1b;

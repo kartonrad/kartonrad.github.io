@@ -303,6 +303,7 @@
   padding: 0.25em;
   border-radius: 0.5em;
   background-clip: text;
+  -webkit-background-clip: text;
   background-image: linear-gradient(200grad, #11d900, #14ffd3);
   color: transparent;
   border: 1em solid #181a1b;
@@ -394,6 +395,7 @@
 .gradientText, #mobileSidebarButton .logoText span, nav .logoText span, a:hover, a:focus, a:visited:hover, a:visited:focus, a.anchor:hover, a.anchor:focus, a:visited.anchor:hover, a:visited.anchor:focus {
   color: transparent;
   background-clip: text;
+  -webkit-background-clip: text;
   background-image: linear-gradient(135deg, #ff00fe, #00f3ff);
 }
 
