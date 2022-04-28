@@ -105,7 +105,6 @@ p {
 
 .rainbow {
 	color: transparent;
-	pointer-events: none;
 	background-clip: text;
 	-webkit-background-clip: text;
 	background-image: linear-gradient(135deg, #ff00fe, #00f3ff);
