@@ -1,0 +1,68 @@
+.eye {
+  position: relative;
+  transition: transform 20s ease-in;
+  transform: scale(1);
+  z-index: 2;
+}
+.eye svg {
+  transition: filter 20s ease-in;
+  filter: contrast(1);
+}
+
+.eye.disabled:hover {
+  transform: scale(1);
+}
+.eye.disabled:hover svg {
+  animation: triggered 0.2s steps(2) infinite;
+  filter: contrast(1);
+}
+
+.eye:hover {
+  transform: scale(100);
+}
+.eye:hover svg {
+  animation: triggered 0.2s steps(2) infinite;
+  filter: contrast(100);
+}
+
+.triggered {
+  animation: triggered 0.2s steps(2) infinite;
+}
+
+@keyframes triggered {
+  0% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-2deg);
+  }
+  20% {
+    transform: translate(-3px, 0) rotate(3deg);
+  }
+  30% {
+    transform: translate(0, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(2px, 1px) rotate(-2deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(4deg);
+  }
+  90% {
+    transform: translate(2px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+/*# sourceMappingURL=eye.css.map */

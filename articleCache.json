@@ -1,0 +1,322 @@
+{
+     "articles": {
+          "index": {
+               "url": "/index",
+               "title": "Home | Kartonrad",
+               "author": 0,
+               "time": "1970-01-01T00:00:00.000Z",
+               "description": "A list of all my Web Projects!",
+               "fulltext": "My things:\n-  Discussion: Forum made in Next.js/Postgres\n-  Satans Workshop: Become obsessed with Polygrams\n-  TIME: Time Tracker/Diary made in React [BACKEND DISABLED]\n- Docs:  Documentation for a custom Markdown-Blog-System\n-  CEASAR cypher: Foil every attempt to intercept your messages!!\n-  Dragon Fractal: The Draconic fractal [ZOOM BROKEN]\n-  Hitler AI: Exclusive look into Hitlers Autocorrect [BAD UI]\n-  Intelicom: (Very) old school project [Doesn't resize]\n-  Tic-Tac-Toe: a friend of mine made this idk why i have it (blatantly stolen)\n",
+               "tags": []
+          },
+          "sitemap": {
+               "url": "/sitemap",
+               "title": "Sitemap | Kartonrad",
+               "author": 0,
+               "time": "1970-01-01T00:00:00.000Z",
+               "description": "Links leading literally everywhere!",
+               "fulltext": "Sitemap\n- 1. Home | Kartonrad\n- 2. Sitemap | Kartonrad\n- \n- 3. BLACK HOLE \n- 4. BINGUS\n- 5. Automatic Emails\n- 6. DOCS\n- 6.1. Project Skeleton\n- 6.2. Default Article Ordering\n- 6.3. Project TODO\n- 6.4. MARKDOWN TestFile [Laggy]\n- 6.5. lmaobro\n- 6.5.1. OMINOUS DOCUMENT\n- 6.5.2. pain\n- 6.5.3. Testqueries\n- 6.6. hahahasansundertale\n- 6.6.1. Meglovania\n- 7. Tic-Tac-Toe AI\n- 8. Satans Workshop\n- 8.1. OMINOUS DOCUMENT\n- 9. sus\n- 9.1. Random LightShot Image\n- 10. text\n- 10.1. Generic Pronouns\n- 10.2. y/N\n- 10.3. Test-Story: Twine\n",
+               "tags": []
+          },
+          "blackHole": {
+               "url": "/blackHole",
+               "title": "BLACK HOLE ",
+               "author": 0,
+               "time": "1970-01-01T00:00:00.000Z",
+               "description": "\n",
+               "fulltext": "",
+               "tags": []
+          },
+          "bingus": {
+               "url": "/bingus",
+               "title": "BINGUS",
+               "author": 0,
+               "time": "1970-01-01T00:00:00.000Z",
+               "description": "BRUHBINGUS",
+               "fulltext": "Gnomed, bingus\nWhile i question my life choices, why dont you look at this gnome \nYk maybe hover your mouse over the card or smth haha\n",
+               "tags": []
+          },
+          "automaticEmails": {
+               "url": "/automaticEmails",
+               "title": "Automatic Emails",
+               "author": 0,
+               "time": "1970-01-01T00:00:00.000Z",
+               "description": "Automatic Emails\nDue to the fkn bullshit restrictions of hosting and email providers,    i am forced to send email through free GMX accounts instead of my domain. 😡\n    if discussion was a more serious project i could maybe pay for a professional email service,\n    but as it stands, i aint paying shit\n[...]",
+               "fulltext": "Automatic Emails\nDue to the fkn bullshit restrictions of hosting and email providers,    i am forced to send email through free GMX accounts instead of my domain. 😡\n    if discussion was a more serious project i could maybe pay for a professional email service,\n    but as it stands, i aint paying shit\nList of currently used Emails\n- drkslv@gmx.de\n- noreply@kartonrad.de (i wish i could use this one - but heroku says no)\n",
+               "tags": []
+          }
+     },
+     "folders": {
+          "docs": {
+               "url": "/docs/",
+               "articles": {
+                    "index": {
+                         "url": "/docs/index",
+                         "title": "DOCS",
+                         "author": 1,
+                         "time": "2021-07-08T13:52:00.000Z",
+                         "description": "These docs are generated using a custom Build tool i made!The tool renders markdown files into templates and provides a client-side search function.While i want to use this system for a small blog in the future, i currently just have the tool’s own documentation on herePlease don’t bother reading it!! The tool is not ready to be distributed anyway!\nAnyway, this template looks quite good, doesn’t it?I’m most proud of how well the sidebar works at the moment, look how sexy it is.I still need to add custom styles to the markdown parser for more flexibility.\nGeneration\nThese “Documentation” Pages are statically generated from Markdown and Pug (Html templating) Files.To build the site, generate.js is run, which copies html and compiles pug files located in /src/pages to /public.The directory structure is preserved, allowing easy url definitions through folder names.\n[...]",
+                         "fulltext": "These docs are generated using a custom Build tool i made!The tool renders markdown files into templates and provides a client-side search function.While i want to use this system for a small blog in the future, i currently just have the tool’s own documentation on herePlease don’t bother reading it!! The tool is not ready to be distributed anyway!\nAnyway, this template looks quite good, doesn’t it?I’m most proud of how well the sidebar works at the moment, look how sexy it is.I still need to add custom styles to the markdown parser for more flexibility.\nGeneration\nThese “Documentation” Pages are statically generated from Markdown and Pug (Html templating) Files.To build the site, generate.js is run, which copies html and compiles pug files located in /src/pages to /public.The directory structure is preserved, allowing easy url definitions through folder names.\n\nSass files in /src/style are also compiled to /public/__bbbfly/style,Pug files in /src/components are compiled to /public/__bbbfly/components and can be imported and used in the browserJust load the script file, the function will be called render_component_[filename]\ngenerate.js won’t delete files already located in public, allowing you to manually place files into the /assets folder for example(html files in /public may be overridden by files in /src/pages though, and when the filesystem watcher detects deletion of a /pages file, the corresponding file in /public will be deleted)\nMarkdown\nMarkdown files obviously require a template to define design and control elements such as sidebars, headers, footers, etc.Thats why you can place pug files into /src/md_templates, and include a json object in the first line of a markdown file:\n[//]: # '{\"template\": \"listsidebar\", \"vars\": {\"scope\": \"docs\"} }' \nThis json object can define the template, variables to be passed into it (in this case, the root directory for the sidebar to your left:) )and other Information outlined here\nArticle/Blog System, future Plans\n“Well, that’s neat and all”, i hear you say, “but how does this qualify as a blog system”???And you’d be right. There are a few features i’d want for a simple blogging tool:\n- Search through Articles ✅\n- Suggestion of Articles\n- Tree View for Articles ✅\n- Display latest Articles\nAs the foundations for all of these features, an index of all articles or pages needs to be generated.After the compilation step, the generated HTML is scraped for a title, a description, a tree of h1, h2, h3 sections and the full text without formatting for search.All of this information for every page is saved as a json file, that you can view here\nThis object is passed to every pug file and the markdown templates, and can then be displayed as the tree view you can see to your left.I haven’t implemented search, suggestions and a system to implement timestamps yet, but from this foundation it shouldn’t take me that much more time.\narticleCache.json is public, so that a browser can be scripted to do the search-stuff on the client side.This is important for me, since the site lives on Github pages. Maybe if i get my own server, i’ll do secret shit that will require a way to be excluded from the public search index.\nI will, when i’m done, probably create an electron.js heroku-app for a more user-friendly process to add articles,regenerate the site and push both the sourcefiles and the the output to their respective git repos.(maybe with an option to post the link to twitter)\nI’m kinda hyped this will be great\n",
+                         "tags": []
+                    },
+                    "architecture": {
+                         "url": "/docs/architecture",
+                         "title": "Project Skeleton",
+                         "author": 1,
+                         "time": "2021-07-08T12:52:00.000Z",
+                         "description": "Folder Structure\n- /.butterflyBuild: compiled output\n- /src: contains content that needs to be converted or compiled\n- /style: sass markup that is compiled to /public/__bbbfly/style\n[...]",
+                         "fulltext": "Folder Structure\n- /.butterflyBuild: compiled output\n- /src: contains content that needs to be converted or compiled\n- /style: sass markup that is compiled to /public/__bbbfly/style\n- /pages: contains pug/html/markdown that is compiled to public, preserving the directory structure - like classic html path shit\n- /md_templates: templates that are used by the markdown parser\n- /components: pug components that can be included into pages and are compiled to /public/__bbbfly/components for use on the client\n- /public: as-is assets;\nMarkdown File Specification\nTemplate\n- A pug template that can be used by markdown files in /pages \n- The compiled content is passed in the converted local\n- Make sure to use a ! to tell pug to include the raw content\n- other passed locals:\n- url: url this file will have\n- articles: article cache\n- author: author\n- time Date Object for date defined in header\n- vars: Custom Object defined via markdown file header\n- docInfo: DocInfo (obtained by HTML scraper)\n- functions isSubpath and getFolder for working with the article cache\nMarkdown File\n- It’s just markdown except:\n- Links may be converted to embeds\n- Anchor tags may be included\n- hopefully custom styles at some point\n- Can include JSON metadata in a md comment on the first line (“Header”)\n- [//]: # '{\"template\": \"\"}' \n- template: String – specifies the name of the pug template used (or default.pug)\n- tags: String[] – list of tags used to group of documents\n- vars: Object – values will be inserted into pug locals  lang: String, can be “de”, will sometimes do something\n- parserOptions: Object - may in future set the parser options\nDatatypes\ndocument info\n- title, description, fulltext\n- sections: Array of section objects\n- text: Headline of this section\n- anchor: Tag, used to skip through the page\n- lvl: heading level\n- sub: Array of subsections  \narticle cache\n- root is a folder object for /pages\n- Folder Object:\n- url: Url of this folder\n- articles: Array of article objects\n- url: URl of this article\n- author: author\n- time Date Object for date defined in header\n- template, vars, parserOpts\n- includes all properties from DocInfo\n- folders: Array of folder objects\n- series: bad idea object that’s always empty\nauthor\n- defined in /src/authors.json\n- array of objects outlined below\n- displayName - name that may be displayed by pug file \n- avatarUrl - should be a url pointing to a (square) image, that may […]\n- description - description that may […]\n",
+                         "tags": []
+                    },
+                    "articleOrderConcept": {
+                         "url": "/docs/articleOrderConcept",
+                         "title": "Default Article Ordering",
+                         "author": 1,
+                         "time": "2021-09-10T12:36:00.000Z",
+                         "description": "Default, cus templates aren’t required to respect it\nSometimes, articles/chapters within a folder should be read in a certain order. Blog Posts are usually ordered by publication date, and all narrative or informative content is usually arranged very deliberately.\nI think there should be a few options to order content:\n- Prefixing filenames: 1-SomeTitle.md, 2-OtherTitle.md\n[...]",
+                         "fulltext": "Default, cus templates aren’t required to respect it\nSometimes, articles/chapters within a folder should be read in a certain order. Blog Posts are usually ordered by publication date, and all narrative or informative content is usually arranged very deliberately.\nI think there should be a few options to order content:\n- Prefixing filenames: 1-SomeTitle.md, 2-OtherTitle.md\n- the prefix must be striped in url and in cache\n- Automatic order\n- alphabetical, newest-to-oldest, oldest-to-newest\n- Caching disabled\n- in production builds, all articles except the folders index are removed from search/lists\nOrderBy values: “alphabetical”, “newest-to-oldest”, “oldest-to-newest”, “prefix”, “disabled”\nSeries.json is only evaluated during initial build, due to sanity\n",
+                         "tags": []
+                    },
+                    "todo": {
+                         "url": "/docs/todo",
+                         "title": "Project TODO",
+                         "author": 1,
+                         "time": "2021-07-08T20:32:00.000Z",
+                         "description": "Place any file in  ✅\n- Just have generate.js copy them over as is ✅\n- prevent clutter in /public/assets and remain flexible\nTimestamp and author field ✅\n[...]",
+                         "fulltext": "Place any file in  ✅\n- Just have generate.js copy them over as is ✅\n- prevent clutter in /public/assets and remain flexible\nTimestamp and author field ✅\n- pug, md and html file can use comment header to define author, timestamp and tags ✅\n- timestamp human readable ✅\n- 04 Dec 1995 00:12:00 EST ✅\n- something i may be able to write by hand  ✅\n- eventually automate adding and editing articles with idk electron\n- client side script to compute time since publication\n- authorId: numerical id or key ✅\n- defined in /src/authors.json ✅\nClean up pages directory\n- seperate compiled ✅\n- document new folder names ✅\nControlled order of articles\n- introduce means of ordering contents of a folder (currently just alphabetical)\n- series.json in each folder? \n- contains an array of object\n- key: string\n- folder: boolean\n- instead of first iterating through articles then folders, iterate through this array, using boolean to determine whether to pick folder or article\n- generate.js appends all keys not defined in series.json to the array, to ensure its completeness\n- array may be generated at build time from article timestamps or something\n- a way to get the next and previous article\n- (template that shows folder contents in series format)\n- series should include a value to turn off indexing\nProtected articles\n- articles that can only be accessed with a password, with certain query parameters, coming from certain links, etc\n- content is aes encrypted with a string containing the correct data\nCustom fetching scripts in pages\n- scripts with a certain name _fetcher.js or something\n- script can be in any subfolder or /src/pages\n- are executed at build time, can return an array of article objects to be built with a template\n- shall include markdown text, template, author and timestamp\n- \nWill probably not do lmao, just use script tag fuck you\nprimitive webpack type thing to import scripts into scripts\n- i hate webpack \n- use as little as possible\n- configuration should never be touched ever\n- just used to load javascript, no funny buissness!!! \nClient side search ✅\n- trigram matching? for every article? (postgres can do something like that fairly fast so\n- ended up being lunr ✅\n- then render list ✅ (way to import pug snippets into js ) \n- pass query parameter to client-scroll to and highlight search term\nscraper improvements fixes\n- code in headings is broken for instance \n- links in headings too\nmake markdown fancier\nmd link embeds\n- scrape external sites linked to in da blog\n- twitter embeds\n- use article.json to generate embeds for links to this site\nand finally make a hundred epic templates\n- support for multiple templates hmm\n",
+                         "tags": []
+                    },
+                    "markdownExample": {
+                         "url": "/docs/markdownExample",
+                         "title": "MARKDOWN TestFile [Laggy]",
+                         "author": 1,
+                         "time": "2021-08-27T14:55:00.000Z",
+                         "description": "h1 Heading 8-)\nh2 Heading\nh3 Heading\nh4 Heading\n[...]",
+                         "fulltext": "h1 Heading 8-)\nh2 Heading\nh3 Heading\nh4 Heading\nh5 Heading\nh6 Heading\nTwt embed\n            \n                \n\nYt Embed\nLol video \n        \n ist nice ihr hurensöhne\n\n        \n\n        \n\nSpotify Embed\n        \n            \n        \n            \n        \n            \n        \n            \n        \n            \n        \n            \n\nSoundcloud Embed\n        \n            \n        \n            \n        \n            \n\nInstagram\n        \n            \n        \n            \n\nHorizontal Rules\nTypographic replacements\nEnable typographer option to see result.\n(c) (C) (r) (R) (tm) (TM) (p) (P) +-\ntest.. test… test….. test?….. test!….\n!!!!!! ???? ,,  – —\n“Smartypants, double quotes” and ‘single quotes’\nEmphasis\nThis is bold text\nThis is bold text\nThis is italic text\nThis is italic text\nStrikethrough\nBlockquotes\nBlockquotes can also be nested…\n…by using additional greater-than signs right next to each other…\n…or with spaces between arrows.\nLists\nUnordered\n- Create a list by starting a line with +, -, or *\n- Sub-lists are made by indenting 2 spaces:\n- Marker character change forces new list start:\n- Ac tristique libero volutpat at\n- Facilisis in pretium nisl aliquet\n- Nulla volutpat aliquam velit\n- Very easy!\nOrdered\n- Lorem ipsum dolor sit amet\n- Consectetur adipiscing elit\n- Integer molestie lorem at massa\n- You can use sequential numbers…\n- …or keep all the numbers as 1.\nStart numbering with offset:\n- foo\n- bar\nCode\nInline code\nIndented code\nBlock code “fences”\nSyntax highlighting\nTables\nRight aligned columns\nLinks\nlink text\nlink with title\nAutoconverted link https://github.com/nodeca/pica (enable linkify to see)\nImages\n\nLike links, Images also have a footnote style syntax\n\nWith a reference later in the document defining the URL location:\nPlugins\nThe killer feature of markdown-it is very effective support ofsyntax plugins.\n\nClassic markup: :wink: :crush: :cry: :tear: :laughing: :yum:\nShortcuts (emoticons): :-) :-( 8-) ;)\nsee how to change output with twemoji.\n/\n- 19^th^\n- H2O\n\n++Inserted text++\n\n==Marked text==\n\nFootnote 1 link[^first].\nFootnote 2 link[^second].\nInline footnote^[Text of inline footnote] definition.\nDuplicated footnote reference[^second].\n[^first]: Footnote can have markup\n[^second]: Footnote text.\n\nTerm 1\n:   Definition 1with lazy continuation.\nTerm 2 with inline markup\n:   Definition 2\nCompact style:\nTerm 1  ~ Definition 1\nTerm 2  ~ Definition 2a  ~ Definition 2b\n\nThis is HTML abbreviation example.\nIt converts “HTML”, but keep intact partial entries like “xxxHTMLyyy” and so on.\n*[HTML]: Hyper Text Markup Language\n\n::: triggeredhere be dragons:::\n::: spoilerGAMER:::\n",
+                         "tags": []
+                    }
+               },
+               "folders": {
+                    "lmaobro": {
+                         "url": "/docs/lmaobro/",
+                         "articles": {
+                              "eee": {
+                                   "url": "/docs/lmaobro/eee",
+                                   "title": "OMINOUS DOCUMENT",
+                                   "author": 4,
+                                   "time": "1970-01-01T00:00:00.000Z",
+                                   "description": "\n        \n\n\n",
+                                   "fulltext": "\n        \n\n",
+                                   "tags": []
+                              },
+                              "pain": {
+                                   "url": "/docs/lmaobro/pain",
+                                   "title": "pain",
+                                   "author": 2,
+                                   "time": "1970-01-01T00:00:00.000Z",
+                                   "description": "pain pain\n\n",
+                                   "fulltext": "pain pain\n",
+                                   "tags": []
+                              },
+                              "testqueries": {
+                                   "url": "/docs/lmaobro/testqueries",
+                                   "title": "Testqueries",
+                                   "author": 0,
+                                   "time": "1970-01-01T00:00:00.000Z",
+                                   "description": "- TJ\n- call\n- code\n- OMINOUS\n[...]",
+                                   "fulltext": "- TJ\n- call\n- code\n- OMINOUS\n- Undertale\n- Anchor, JSON, Markdown Spec, Structure, Author\n",
+                                   "tags": []
+                              }
+                         },
+                         "folders": {},
+                         "series": {
+                              "s": []
+                         }
+                    },
+                    "hahahasansundertale": {
+                         "url": "/docs/hahahasansundertale/",
+                         "articles": {
+                              "megalovania": {
+                                   "url": "/docs/hahahasansundertale/megalovania",
+                                   "title": "Meglovania",
+                                   "author": 3,
+                                   "time": "1970-01-01T00:00:00.000Z",
+                                   "description": "Sans Undertale\n        \n\n\n",
+                                   "fulltext": "Sans Undertale\n        \n\n",
+                                   "tags": []
+                              }
+                         },
+                         "folders": {},
+                         "series": {
+                              "s": []
+                         }
+                    }
+               },
+               "series": {
+                    "s": [
+                         {
+                              "nu": 2,
+                              "na": "index",
+                              "f": false
+                         },
+                         {
+                              "nu": 3,
+                              "na": "architecture",
+                              "f": false
+                         },
+                         {
+                              "nu": 4,
+                              "na": "todo",
+                              "f": false
+                         },
+                         {
+                              "nu": 4,
+                              "na": "articleOrderConcept",
+                              "f": false
+                         },
+                         {
+                              "nu": 5,
+                              "na": "markdownExample",
+                              "f": false
+                         }
+                    ],
+                    "settings": {
+                         "orderBy": "prefix",
+                         "unprefixed": "newest-to-oldest"
+                    }
+               }
+          },
+          "acfefe": {
+               "url": "/acfefe/",
+               "articles": {
+                    "index": {
+                         "url": "/acfefe/index",
+                         "title": "Tic-Tac-Toe AI",
+                         "author": 0,
+                         "time": "1970-01-01T00:00:00.000Z",
+                         "description": "Tic-Tac-Toe AI\nWritten by Acfefe Pikebu and hosted on my Website, because why not\nWaint for it ...\n\n",
+                         "fulltext": "Tic-Tac-Toe AI\nWritten by Acfefe Pikebu and hosted on my Website, because why not\nWaint for it ...\n",
+                         "tags": []
+                    }
+               },
+               "folders": {},
+               "series": {
+                    "s": []
+               }
+          },
+          "satansWorkshop": {
+               "url": "/satansWorkshop/",
+               "articles": {
+                    "index": {
+                         "url": "/satansWorkshop/index",
+                         "title": "Satans Workshop",
+                         "author": 0,
+                         "time": "1970-01-01T00:00:00.000Z",
+                         "description": "A tool that visualizes all possible regular Polygons and Polygrams. In the pursuit of Satanism of course.",
+                         "fulltext": "No Shape selected\n",
+                         "tags": []
+                    },
+                    "lmao": {
+                         "url": "/satansWorkshop/lmao",
+                         "title": "OMINOUS DOCUMENT",
+                         "author": 0,
+                         "time": "1970-01-01T00:00:00.000Z",
+                         "description": "\n",
+                         "fulltext": "",
+                         "tags": []
+                    }
+               },
+               "folders": {},
+               "series": {
+                    "s": []
+               }
+          },
+          "sus": {
+               "url": "/sus/",
+               "articles": {
+                    "randomLightShot": {
+                         "url": "/sus/randomLightShot",
+                         "title": "Random LightShot Image",
+                         "author": 0,
+                         "time": "1970-01-01T00:00:00.000Z",
+                         "description": "Lowkey Library of Babel\n(Tip: CTRL+W to close the LightShot Tab without moving the mouse)\n\n",
+                         "fulltext": "Lowkey Library of Babel\n(Tip: CTRL+W to close the LightShot Tab without moving the mouse)\n",
+                         "tags": []
+                    }
+               },
+               "folders": {},
+               "series": {
+                    "s": []
+               }
+          },
+          "text": {
+               "url": "/text/",
+               "articles": {
+                    "genericPronouns": {
+                         "url": "/text/genericPronouns",
+                         "title": "Generic Pronouns",
+                         "author": 1,
+                         "time": "2021-10-02T23:56:00.000Z",
+                         "description": "When pronouns are unknown at the point in time the text is written, we run into a bunch of problems. (how did we get into this situation? uhh, (ghost)writing y/n fiction (for a friend of course!!))\nNot only do we have to consider the different pronoun forms: subjective, posessive and objective, we also need to consider that they/them pronouns cause the auxillary verbs (be, have and do) to change into plural form 😖\nThe best approach i see is to write our text with placeholder tags. The computer recognizes $ followed by a unique string as a placeholder tag and will replace it at runtime, when we know which pronouns to use.(c: ) tells the computer to capitalize the first letter.\nDisclaimer: This is probably waaay to much effort for the benefit you gain, you could just avoid other charachters in your stories talking about yN or use they/them!!\n[...]",
+                         "fulltext": "When pronouns are unknown at the point in time the text is written, we run into a bunch of problems. (how did we get into this situation? uhh, (ghost)writing y/n fiction (for a friend of course!!))\nNot only do we have to consider the different pronoun forms: subjective, posessive and objective, we also need to consider that they/them pronouns cause the auxillary verbs (be, have and do) to change into plural form 😖\nThe best approach i see is to write our text with placeholder tags. The computer recognizes $ followed by a unique string as a placeholder tag and will replace it at runtime, when we know which pronouns to use.(c: ) tells the computer to capitalize the first letter.\nDisclaimer: This is probably waaay to much effort for the benefit you gain, you could just avoid other charachters in your stories talking about yN or use they/them!!\nWalking through an Example\nOk, look at this:\nConverted with “Jake” and he/him:\nConverted with “Max” and they/them:\nFollowing variables are defined: $they, $their, $theirs, $them, $are, $were, $have, $do, $s -> There should be a function/macro to capitalize the first letter, if needed\nPronoun variationts\n- $they - he/she/it/they comitted arson.      [Subjective]\n- $their - i borrowed his/her/their/its scarf [Posessive]\n- $theirs - his/hers/theirs/“its”             [Posessive2]\n- $them - i gave him/her/it/them a knife.     [Objective]\n- [$them]self - … made it himself/herself/itself/themself (ves) [Objective]\nAuxillary Verbs\n(all because of they/them 😔😔)\nto be\n- $are - they are cool - he is cool\n- $were - they were sad - he was sad\n- $re - they’re sad - she’s sad\n- ✅ being - they $were being mean - he [was] being mean\n- ✅ will - they will die - he will die        to have\n    \n        #\n    \n    \nto have\n- $have - they have acne - he has acne\n- $ve - they’ve commited arson - she’s commited arson\n- ✅ had - they had acne - he had acne        to do\n    \n        #\n    \n    \nto do\n- $do - they do cocaine - he does cocaine\n- ✅ did - they did - he did        modal auxillary\n    \n        #\n    \n    can, could, may, might, must, ought to, shall, should, will, and would✅ these are static\nmodal auxillary\nSimple present\nBecause of the godforsaken ‘s’ thats added in singular simple present, we need another exception\n$s must be “s” for he/she/it and “” (empty) for they\n- he/she/it speaks:         $they speak$s.\n- he/she/it does not speak: $they $do not speak\n- does he/she/it speak?:    $do $they speak?\nImplementation in Harlowe/Twine [Interactive Fiction Tool]:\nMy described approach is pretty generic and can work in every environment that supports templating of a sort.I’m using Twine, an app for creating interactive stories, with the format Harlowe.You can find a live Demo below, that you can download by hitting CTRL+S in the browser, and import into Twine.The other link is to the snippet of the source code that uses $these tags.\nA very random DEMO, – Story Source Snippet, \nBasically, this macro does all the work.It will define the variables once. They will then be available globally.\n",
+                         "tags": []
+                    },
+                    "pronounsDemo": {
+                         "url": "/text/pronounsDemo",
+                         "title": "y/N",
+                         "author": 0,
+                         "time": "1970-01-01T00:00:00.000Z",
+                         "description": "\n",
+                         "fulltext": "",
+                         "tags": []
+                    },
+                    "tryingTwine": {
+                         "url": "/text/tryingTwine",
+                         "title": "Test-Story: Twine",
+                         "author": 0,
+                         "time": "1970-01-01T00:00:00.000Z",
+                         "description": "\n",
+                         "fulltext": "",
+                         "tags": []
+                    }
+               },
+               "folders": {},
+               "series": {
+                    "s": []
+               }
+          }
+     },
+     "series": {
+          "s": [
+               {
+                    "nu": 1,
+                    "na": "index",
+                    "f": false
+               },
+               {
+                    "nu": 2,
+                    "na": "sitemap",
+                    "f": false
+               },
+               {
+                    "nu": 3,
+                    "na": "blackHole",
+                    "f": false
+               },
+               {
+                    "nu": 4,
+                    "na": "bingus",
+                    "f": false
+               },
+               {
+                    "nu": 5,
+                    "na": "automaticEmails",
+                    "f": false
+               }
+          ],
+          "settings": {
+               "orderBy": "prefix",
+               "unprefixed": "newest-to-oldest"
+          }
+     }
+}

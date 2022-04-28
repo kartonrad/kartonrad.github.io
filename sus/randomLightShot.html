@@ -1,0 +1,25 @@
+<html lang="en"><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Random LightShot Image</title><script>window.onload = () => {
+    const link = document.getElementById("nice");
+
+    function getRandomInt( max, min = 0) {
+        return Math.floor(Math.random() * (max-min)) + min;
+    }
+
+    function randomId () {
+        var set = "abcdefghijklmnopqrstuvwxyz1234567890"
+        var out = "";
+
+        for (let i = 0; i<6; i++) {
+            out = out.concat(set[getRandomInt(set.length)])
+        }
+
+        return out;
+    }
+
+    link.href = "https://prnt.sc/" + randomId();
+    link.addEventListener("click", () => {
+        link.href = "https://prnt.sc/" + randomId();
+    });
+}
+
+</script></head><body> <h1>Lowkey Library of Babel</h1><a id="nice" target="_blank" rel="noreferrer noopener">Open to random Screenshot</a><p>(Tip: CTRL+W to close the LightShot Tab without moving the mouse)</p></body></html>
