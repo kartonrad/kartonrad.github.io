@@ -1,55 +1,55 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
-.tiltCardGnome {
+.tiltCard.gnome {
   margin: auto;
   margin-top: 100px;
   width: 200px;
   height: 400px;
 }
-.tiltCardGnome .renderedCard {
+.tiltCard.gnome .renderedCard {
   border-radius: 10px;
   background-image: linear-gradient(35deg, #3125d6, #11aeec);
 }
-.tiltCardGnome .renderedCard img {
+.tiltCard.gnome .renderedCard img {
   width: 100%;
   height: 100%;
   margin: auto;
   border-radius: 10px;
 }
 
-.tiltCard, .tiltCardGnome {
+.tiltCard {
   position: relative;
   --mouseX: 0;
   --mouseY: 0;
   --tiltX: 0;
   --tiltY: 0;
 }
-.tiltCard .hitbox, .tiltCardGnome .hitbox {
+.tiltCard .hitbox {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
 }
-.tiltCard .renderedCard, .tiltCardGnome .renderedCard {
+.tiltCard .renderedCard {
   width: 100%;
   height: 100%;
   transition: all 100ms;
   transform: perspective(400px) scale(1) rotate3d(0, 0, 0, 0deg);
   filter: brightness(1);
 }
-.tiltCard:hover, .tiltCardGnome:hover {
+.tiltCard:hover {
   z-index: 100;
 }
-.tiltCard:hover .hitbox, .tiltCardGnome:hover .hitbox {
+.tiltCard:hover .hitbox {
   transform: scale(1.5);
 }
-.tiltCard:hover .renderedCard, .tiltCardGnome:hover .renderedCard {
+.tiltCard:hover .renderedCard {
   transform: perspective(400px) scale(1.5) rotate3d(var(--tiltBY, 0), var(--tiltBX, 0), 0, calc(30deg * var(--magnitude, 0)));
   filter: brightness(var(--light, 1));
   z-index: 200;
 }
-.tiltCard .debugRect, .tiltCardGnome .debugRect {
+.tiltCard .debugRect {
   display: none;
   position: absolute;
   top: var(--mouseY, 0);
@@ -218,7 +218,7 @@ a, a:visited, a:hover {
   margin-top: -5px;
   filter: drop-shadow(0px 4px #fe00fd);
 }
-.socials a[href*=troet] {
+.socials a[href*=toot] {
   background-image: linear-gradient(0deg, #3145c6 0%, #5b95fb 100%);
 }
 .socials a[href*=github] {
