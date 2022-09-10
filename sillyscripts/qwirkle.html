@@ -1,0 +1,384 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔵🟦 QWIRKLE 🔹💙</title>
+    <script>
+        const SVG_SQUARE = '<rect x="79.375" y="52.917" width="103.19" height="103.19" ry="1.7098e-6"/>';
+        const SVG_DIAMOND = '<path d="m130.97 52.917 51.594 51.594-51.594 51.594-51.594-51.594z"/>';
+        const SVG_CIRCLE = '<path d="m177.61 126.57a51.594 51.594 0 0 1-68.698 24.586 51.594 51.594 0 0 1-24.586-68.698 51.594 51.594 0 0 1 68.698-24.586 51.594 51.594 0 0 1 24.586 68.697l-46.642-22.056z"/>';
+        const SVG_SPIKESTAR = '<path d="m79.375 52.917 51.594 31.75 51.594-31.75-31.75 51.594 31.75 51.594-51.594-31.75-51.594 31.75 31.75-51.594z"/>';
+        const SVG_SUN = '<path transform="matrix(.26458 0 0 .26458 79.375 52.917)" d="m330.36 330.36-94.77-37.368-40.59 93.435-40.59-93.435-94.77 37.368 37.368-94.77-93.435-40.59 93.435-40.59-37.368-94.77 94.77 37.368 40.59-93.435 40.59 93.435 94.77-37.368-37.368 94.77 93.435 40.59-93.435 40.59z"/>';
+        const SVG_CROSS = '<path d="m142.88 92.604c50.271-50.271-74.083-50.271-23.812 0-50.271-50.271-50.271 74.083 0 23.813-50.271 50.271 74.083 50.271 23.812 0 50.271 50.271 50.271-74.083 0-23.813z"/>';
+        const SHAPES = [SVG_SQUARE,SVG_DIAMOND,SVG_CIRCLE,SVG_SPIKESTAR,SVG_SUN,SVG_CROSS]; 
+        const COLORS = ['#a93a13', '#ccca27', '#3b5fc0', '#2c5a22', '#bb6216', '#434892'];
+
+        const PLACED_BIT = 4096;
+        const OR_BIT = 8192;
+        const EMPTY_PIECE = 0b10111111111111; // all posibillities and OR is set
+        const EP = EMPTY_PIECE;
+
+        function svgColor(obj, color) {
+            return obj.replace('/>', 'fill="'+color+'"/>');
+        }
+
+        function svgWrap(object) {
+            return '<svg width="103.19mm" height="103.19mm" version="1.1" viewBox="0 0 103.19 103.19" xmlns="http://www.w3.org/2000/svg">'+
+                '<g transform="translate(-79.375 -52.917)">'+
+                    object +
+                '</g>'+
+            '</svg>';
+        }
+
+        function pieceDebug(piece, txt="Piece", withPaddingLength=16) {
+            let str = piece.toString(2);
+            console.log( txt," <", str.padStart(withPaddingLength, "0"), pieceSplit(piece),">");
+        }
+
+        /** 
+         * Piece is a 14-bit Integer, constructed like this: OPCCCCCCSSSSSS
+        */
+        function pieceConstructor(color, shape, placed=true, operator=false) {
+            return (Math.pow(2, color)|0)<<6 | (Math.pow(2, shape)|0) | Number(placed)<<12 | Number(operator)<<13
+        }
+        const pC = pieceConstructor;
+        function pieceSplit(piece, placedCheck=true) {
+            if ( placedCheck&&!isPlaced(piece) ) return [-1, -1]; /* If "placed" (12th bit) is not set */
+            return [ Math.log2( piece>>6&63 ) , Math.log2( piece&63 ) ];
+        }
+        function isPlaced(piece) {
+            return ( (PLACED_BIT & piece) == PLACED_BIT )
+        }
+
+        // will be inefficient
+        function intToBoolArray(int, len = 14) {
+            let outarray = [];
+
+            for ( let i = 0; i < len; i++) {
+                outarray[i] = ((int >> i) & 1) === 1;
+            } 
+            return outarray;
+        }
+
+
+        function generateFullBag( pieceDuplicates=3 ) {
+            let bag = [];
+            for (let i = 0; i<COLORS.length; i++) {
+                for (let j = 0; j<SHAPES.length; j++) {
+                    for (let k=0; k<pieceDuplicates; k++)
+                        bag.append( pieceConstructor(i, j) );
+                }  
+            }
+            return bag;
+        }
+        function randomPick( arr ) {
+            let index = Math.ceil( Math.random() * arr.length ) -1;
+            if ( index=-1 ) return null;
+
+            let picked = arr[index];
+            arr.splice(index, 1);
+
+            return picked;
+        }
+
+        function init2Darray(width, height, fill) {
+            let outerarray = [];
+            for (let i = 0; i<height; i++) {
+                let innerarray = [];
+                for (let j = 0; j<width; j++) {
+                    innerarray.push(fill);
+                }  
+                outerarray.push(innerarray);
+            }
+            return outerarray
+        }
+        function debugBoard(board, withPaddingLength=16) {
+            console.log("[");
+            for (let y = 0; y<board.length; y++) {
+                let str = "[";
+                for (let x = 0; x<board[0].length; x++) {
+                    str+=board[y][x].toString(2).padStart(withPaddingLength, "0")+", ";
+                }
+                console.log(str+"]");
+            }
+            console.log("]");
+        }
+
+        function redrawPlayerBag(playerBag, gameBag) {
+            while (playerBag.length < 6) {
+                let pick = randomPick(gameBag);
+                if(pick)
+                    playerBag.push(pick );
+                else 
+                    break;
+            }
+        }
+        
+        function play(playerCount) {
+            let board = init2Darray(128, 128, pieceConstructor(0, 0, false));
+            let redrawBag = generateFullBag();
+            let playerBags = [];
+
+            for (let i = 0; i<playerCount; i++) {
+                let arr = [];
+                redrawPlayerBag(arr, redrawBag);
+                playerBags.push(arr);
+            }
+            /*
+            while(true) {
+                for (let i = 0; i<playerCount; i++) {
+
+                }
+            }*/
+            draw(board);
+        }
+
+        function walkBoardGet(board, x, y, off, turn ) {
+            let bruh = board[y+(off*turn)];
+            if(bruh==undefined) return undefined;
+            return bruh[x+(off*(1-turn))]
+        }
+
+        function walkBoardSet(board, x, y, off, turn, setto ) {
+            board[y+(off*turn)][x+(off*(1-turn))] = setto;
+        }
+
+        function placePiece (board, piece, x, y) {
+            console.log( "==== PLACE PIECE ====", x, y );
+            board[y][x] = piece;
+
+            for (let turn=0; turn<2; turn++) {
+                console.log( turn==0?"X-WALK" : "Y-WALK")
+                let rowStopOffset = 0, rowStartOffset = 0; 
+                let rowAcc = piece;
+
+                for (let dir=-1; dir<=1; dir+=2) {
+                    for (let off=dir; true; off+=dir) {
+                        let bpiece = walkBoardGet(board,x,y,off,turn);
+                        console.log("Walking: (x,y,piece,isPlaced)", x+(off*(1-turn)), y+(off*turn), bpiece, isPlaced(bpiece))
+
+                        if ( bpiece !== undefined && isPlaced(bpiece) ) {
+                            rowAcc = rowAcc | bpiece;
+                        } else {
+                            if(dir===-1)
+                                rowStartOffset = off; 
+                            else
+                                rowStopOffset= off;
+                            break;
+                        }
+                    }
+                }
+                console.log("(RowStop, RowStart):", rowStopOffset, rowStartOffset);
+                pieceDebug(rowAcc, "AccumulatedPieces");
+                let potentialRowEnds = acc2potential( rowAcc, piece ); // ~rowAcc & 0b00111111111111; 
+                pieceDebug(potentialRowEnds);
+
+                let rowStopPiece = walkBoardGet(board,x,y,rowStopOffset,turn);
+                let rowStartPiece = walkBoardGet(board,x,y,rowStartOffset,turn);
+
+                if( rowStopPiece !== undefined)
+                    walkBoardSet(board,x,y,rowStopOffset,turn, /* = */  rowStopPiece & potentialRowEnds);
+                if(rowStartPiece!== undefined)
+                    walkBoardSet(board,x,y,rowStartOffset,turn, /* = */  rowStartPiece & potentialRowEnds);
+            }
+        }
+
+        function acc2potential(acc) {
+            
+            let accDecoded = pieceSplit(acc, false);
+            let negAcc = (~acc)&0b11111111111111; // negate and trim ones to the 14 first bits
+
+            let lostPortion = 0;
+            if (Number.isInteger(accDecoded[0]) && Number.isInteger(accDecoded[1])) {
+                // OR CASE, just pass that shit on
+            } else if ( Number.isInteger(accDecoded[0]) ) {
+                negAcc = negAcc & ~0b0111111000000 & ~OR_BIT;
+                lostPortion = (0b0111111 & Math.pow(2, accDecoded[0])) <<6; // 
+            } else {
+                negAcc = negAcc & ~0b0111111 & ~OR_BIT;
+                lostPortion = 0b0111111 & Math.pow(2, accDecoded[1]);
+            }
+            //lostPortion = ~lostPortion;
+
+            pieceDebug(lostPortion, "LostPortion");
+            potentialPc = 
+                negAcc | lostPortion; // add back the lost portion
+            return potentialPc;
+        }
+
+        function draw(board) {
+            let boardElem = document.getElementById("board");
+
+            let string = "";
+            
+            for (let y = 0; y<board.length; y++) {
+                for (let x = 0; x<board[0].length; x++) {
+
+                    let piece = pieceSplit(board[y][x]);
+                    if(!Array.isArray(piece) || piece[0] < 0 || piece[1] < 0  ) {
+                        let pot = intToBoolArray(board[y][x]);
+
+                        string+='<div class="empty">';
+                        string+='<div class="left">'
+                        //COLOR
+                        for( let colIdx = 0; colIdx < 6; colIdx++ ) {
+                            string+='<div class="col" style="background-color: '+ COLORS[colIdx] +';" data-enabled="'+ pot[colIdx+6] +'"> </div>';
+                        }
+                        string+='</div>';
+                        string+='<span>'+ (pot[13]? '||' : '&') +'</span>';
+                        string+='<div class="left">'
+                        //SHAPES
+                        for( let shpIdx = 0; shpIdx < 6; shpIdx++ ) {
+                            string+='<div class="shp" data-enabled="'+ pot[shpIdx] +'"> '+ svgWrap( svgColor( SHAPES[shpIdx], "#d2d2d2") ) +' </div>';
+                        }
+                        string+='</div>';
+                        string+='</div>';
+                    } else {
+                        //console.log(piece);
+                        string+='<div class="piece">'+svgWrap(svgColor(SHAPES[piece[1]], COLORS[piece[0]]))+'</div>'
+                    };
+                }
+            }
+
+            boardElem.style.gridTemplateColumns = 'repeat('+board[0].length+', 54px)';
+            boardElem.style.gridTemplateRows = 'repeat('+board.length+',  54px)';
+            boardElem.innerHTML = string;
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            draw(init2Darray(10, 10, pieceConstructor(3,4, true)))
+            /*draw([
+                [ [-1,-1], [0,0], [-1,-1], [-1,-1]],
+                [ [-1,-1], [1,2], [4,5], [-1,-1]],
+                [ [-1,-1], [3,3], [2,2], [-1,-1]],
+                [ [-1,-1], [5,1], [4,2], [-1,-1]]
+            ])*/
+            console.log("========Testing Piece Constructor::========");
+            pieceDebug( pieceConstructor(5, 0, true, false) ) ;
+            pieceDebug( pieceConstructor(4, 1, true, false) ) ;
+            pieceDebug( pieceConstructor(3, 2, true, false) ) ;
+            pieceDebug( pieceConstructor(2, 3, true, false) ) ;
+            pieceDebug( pieceConstructor(1, 4, true, false) ) ;
+            pieceDebug( pieceConstructor(0, 5, true, false) ) ;
+            pieceDebug( pieceConstructor(0, 0, false, true) ) ;
+
+            let board = [ 
+                [ EP, EP, EP, EP, EP, EP, EP, EP ],
+                [ EP, EP, EP, EP, EP, EP, EP, EP ],
+                [ EP, EP, EP, EP, EP, EP, EP, EP ],
+                [ EP, EP, EP, EP, EP, EP, EP, EP ],
+                [ EP, EP, EP, EP, EP, EP, EP, EP ],
+                [ EP, EP, EP, EP, EP, EP, EP, EP ]
+            ];
+            console.log("========Testing Piece Place::========");
+            placePiece(board, pC(0,0), 2, 2 )
+            placePiece(board, pC(1,0), 3, 2 )
+            placePiece(board, pC(2,0), 1, 2 )
+            placePiece(board, pC(3,0), 4, 2 )
+            //placePiece(board, pC(4,0), 5, 2 )
+
+            placePiece(board, pC(0,0), 2, 4 )
+            placePiece(board, pC(0,1), 3, 4 )
+            placePiece(board, pC(0,2), 1, 4 )
+            placePiece(board, pC(0,3), 4, 4 )
+            //placePiece(board, pC(0,4), 5, 4 )
+
+            placePiece(board, pC(0,0), 2, 0 )
+            console.log("Board after")
+            debugBoard(board);
+            draw(board);
+        });
+    </script>
+    <style>
+        html {
+            margin: 0px;
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            background-image: url(./oak-5fc4cb29cb8cc-1200.jpg);
+            background-repeat: repeat;
+            background-position: center;
+            background-size: 800px;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        #board {
+            display: grid;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+        }
+        #board > div {
+            width: 50px;
+            height: 50px;
+        }
+
+        .empty {
+            background-color: rgba(0, 0, 0, 0.288);
+            border-radius: 1em;
+            display: flex
+        }
+        .empty > span {
+            z-index: 4;
+            color: crimson;
+        }
+        .empty .left {
+            position:relative;
+            flex-grow: 1;
+            display: flex;
+            flex-direction:column;
+            flex-wrap: wrap;
+        }
+        .empty .left .col {
+            filter:saturate(130%) brightness(120%);
+            border-radius: 5000px;
+        }
+        .empty .left .shp[data-enabled=false] {
+            filter: brightness(0) opacity(0.5);
+        }
+        .empty .left .col[data-enabled=false] {
+            filter: brightness(0.4) opacity(0.5);
+        }
+        .empty .shp svg, .empty .col {
+            width: 10px;
+            height: 13px;
+        }
+        
+
+        .piece {
+            background-color: black;
+        }
+        .piece svg {
+            width: 85%;
+            height: 85%;
+            margin-left: 7.5%;
+            margin-top: 7.5%;
+        }
+        #HAND {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 35vh
+        }
+        #HAND img {
+            float: right;
+            margin-right: -20%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="board">
+
+    </div>
+    <div id="HAND">
+        <img src="./HAND.png">
+    </div>
+</body>
+</html>
