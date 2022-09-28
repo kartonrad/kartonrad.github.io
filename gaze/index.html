@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIRROR</title>
+    <script> 
+        function onGetUserMediaButtonClick(ev) {
+            console.log("Asking for media permission.");
+            navigator.mediaDevices.getUserMedia({video: true})
+            .then(mediaStream => {
+                let video = document.querySelector('#video');
+                video.srcObject = mediaStream;
+                video.play();
+
+                document.getElementById("videoframe").classList.add("fade");
+
+                //const track = mediaStream.getVideoTracks()[0];
+                //imageCapture = new ImageCapture(track);
+            })
+            .catch(error => console.log(error));
+
+            ev.stopPropagation();
+            ev.preventDefault();
+        }
+        console.log("script run..")
+        window.addEventListener("load", () => {
+            console.log("load complete")
+            document.getElementById("videoframe").addEventListener("click", 
+                (ev) => onGetUserMediaButtonClick(ev)
+            );
+        });
+    </script>
+    <style>
+        :root {
+            overflow:hidden;
+        }
+        body {
+            background-color: transparent;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+        }
+        #imgframe {
+            width: max-content;
+            height: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            position:relative;
+        }
+        #videoframe {
+            position: absolute;
+            top: 18.6%;
+            left: 28.6%;
+            width: 43.7%;
+            height: 72.6%;
+            /*border: 2px solid red;*/
+            overflow:hidden;
+            cursor: pointer;
+        }
+        img {
+            height: 100%;
+            /*width: 178.4%;*/
+            position: relative;
+            pointer-events: none;
+        }
+        video {
+            transform: translateX(-37%) scaleX(-1);
+            height: 100%;
+            position: absolute;
+            pointer-events: none;
+        }
+        .smoke-0 {
+            animation: rotate linear infinite 4s;
+            height: 256.4%;
+            top: -75%;
+            left: -56%;
+            position: absolute;
+            opacity: 52%;
+        }
+        .smoke-1 {
+            animation: rotate linear reverse infinite 6s;
+            height: 269.4%;
+            top: -77%;
+            left: -147%;
+            position: absolute;
+            opacity: 52%;
+            /* display: none; */
+        }
+        .smoke-2 {
+            position: absolute;
+        }
+        .fade .smoke-0 {
+            animation: rotate linear infinite 4s, fadeout-52 5s;
+            animation-fill-mode: forwards;
+        }
+        .fade .smoke-1 {
+            animation: rotate linear reverse infinite 6s, fadeout-52 3s;
+            animation-fill-mode: forwards;
+        }
+        .fade .smoke-2, .fade p {
+            animation: fadeout-100 1s;
+            animation-fill-mode: forwards;
+        }
+        p {
+            position: absolute;
+            top: 32%;
+            left: 0%;
+            right: 0%;
+            text-align: center;
+            color: wheat;
+            font-weight: bold;
+            font-size: 25px;
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes fadeout-100 {
+            0% {
+                opacity: 100%;
+                display: static;
+            }
+            100% {
+                opacity: 0%;
+                display:none;
+            }
+        }
+        @keyframes fadeout-52 {
+            0% {
+                opacity: 52%;
+                display: static;
+            }
+            100% {
+                opacity: 0%;
+                display:none;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #090028;">
+    <!--button id ="reveal">Reveal</button-->
+    <div id="imgframe">
+        <div id="videoframe">
+            <video id="video"></video>
+            <img class="smoke-2" src="/gaze/darksmoke.png"/>
+            <img class="smoke-1" src="/gaze/darksmoke.png"/>
+            <img class="smoke-0" src="/gaze/darksmoke.png"/>
+            <p>PEER<br/>INTO<br/>THE<br/>SMOKE</p>
+        </div>
+        <img src="/gaze/MirrorCoulored.png"/>
+    </div>
+</body>
+</html>
