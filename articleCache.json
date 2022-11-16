@@ -15,7 +15,7 @@
                "author": 0,
                "time": "1970-01-01T00:00:00.000Z",
                "description": "Links leading literally everywhere!",
-               "fulltext": "Sitemap\n- 1. Home | Kartonrad\n- 2. Sitemap | Kartonrad\n- \n- 3. BLACK HOLE \n- 4. BINGUS\n- 5. Automatic Emails\n- 6. DOCS\n- 6.1. Project Skeleton\n- 6.2. Default Article Ordering\n- 6.3. Project TODO\n- 6.4. MARKDOWN TestFile [Laggy]\n- 6.5. lmaobro\n- 6.5.1. OMINOUS DOCUMENT\n- 6.5.2. pain\n- 6.5.3. Testqueries\n- 6.6. hahahasansundertale\n- 6.6.1. Meglovania\n- 7. Tic-Tac-Toe AI\n- 8. MIRROR\n- 8.1. MIRROR\n- 9. Satans Workshop\n- 9.1. OMINOUS DOCUMENT\n- 10. sillyscripts\n- 10.1. 🔵🟦 QWIRKLE 🔹💙\n- 11. sus\n- 11.1. Random LightShot Image\n- 12. text\n- 12.1. Generic Pronouns\n- 12.2. y/N\n- 12.3. Test-Story: Twine\n",
+               "fulltext": "Sitemap\n- 1. Home | Kartonrad\n- 2. Sitemap | Kartonrad\n- \n- 3. BLACK HOLE \n- 4. BINGUS\n- 5. Automatic Emails\n- 6. DOCS\n- 6.1. Project Skeleton\n- 6.2. Default Article Ordering\n- 6.3. Project TODO\n- 6.4. MARKDOWN TestFile [Laggy]\n- 6.5. lmaobro\n- 6.5.1. OMINOUS DOCUMENT\n- 6.5.2. pain\n- 6.5.3. Testqueries\n- 6.6. hahahasansundertale\n- 6.6.1. Meglovania\n- 7. Tic-Tac-Toe AI\n- 8. MIRROR\n- 8.1. MIRROR\n- 8.2. MIRROR\n- 9. Satans Workshop\n- 9.1. OMINOUS DOCUMENT\n- 10. sillyscripts\n- 10.1. 🔵🟦 QWIRKLE 🔹💙\n- 11. sus\n- 11.1. Random LightShot Image\n- 12. text\n- 12.1. Generic Pronouns\n- 12.2. y/N\n- 12.3. Test-Story: Twine\n",
                "tags": []
           },
           "blackHole": {
@@ -207,6 +207,15 @@
           "gaze": {
                "url": "/gaze/",
                "articles": {
+                    "embed-oembed": {
+                         "url": "/gaze/embed-oembed",
+                         "title": "MIRROR",
+                         "author": 0,
+                         "time": "1970-01-01T00:00:00.000Z",
+                         "description": "PEERINTOTHESMOKE\n\n",
+                         "fulltext": "PEERINTOTHESMOKE\n",
+                         "tags": []
+                    },
                     "embed": {
                          "url": "/gaze/embed",
                          "title": "MIRROR",
