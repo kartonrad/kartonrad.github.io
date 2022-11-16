@@ -1,0 +1,12 @@
+{
+    "type": "rich",
+    "version": "1.0",
+    "author_name": "Konni",
+    "author_url": "https://kartonrad.de/",
+    "provider_name": "kartonrad.de",
+    "provider_url": "https://kartonrad.de/gaze/",
+    "cache_age": 86400,
+    "html": "<iframe src=\"https://kartonrad.de/gaze/embed.html\" width=\"400\" height=\"1000\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\"></iframe>",
+    "width": 400,
+    "height": 1000
+}
