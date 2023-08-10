@@ -36,7 +36,7 @@ pug_html = pug_html + "\u003Clink rel=\"icon\" href=\"\u002Fassets\u002FeyeFavic
 ;pug_debug_line = 10;pug_debug_filename = ".\u002Fsrc\u002Fcomponents\u002Flayout.pug";
 pug_html = pug_html + "\u003Ctitle\u003E";
 ;pug_debug_line = 10;pug_debug_filename = ".\u002Fsrc\u002Fcomponents\u002Flayout.pug";
-pug_html = pug_html + (pug_escape(null == (pug_interp = title || "DRKSLV") ? "" : pug_interp)) + "\u003C\u002Ftitle\u003E";
+pug_html = pug_html + (pug_escape(null == (pug_interp = title || "Kartonrad") ? "" : pug_interp)) + "\u003C\u002Ftitle\u003E";
 ;pug_debug_line = 11;pug_debug_filename = ".\u002Fsrc\u002Fcomponents\u002Flayout.pug";
 pug_html = pug_html + "\u003Clink rel=\"stylesheet\" href=\"\u002F__bbbfly\u002Fstyle\u002Findex.css\"\u003E";
 ;pug_debug_line = 12;pug_debug_filename = ".\u002Fsrc\u002Fcomponents\u002Flayout.pug";

@@ -174,7 +174,7 @@ a, a:visited, a:hover {
 
 .socials {
   display: grid;
-  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px;
   grid-template-rows: 100px 100px;
   column-gap: 10px;
   row-gap: 10px;
@@ -182,7 +182,7 @@ a, a:visited, a:hover {
 }
 @media screen and (max-width: 600px) {
   .socials {
-    grid-template-columns: 80px 80px 80px 80px;
+    grid-template-columns: 80px 80px 80px;
     grid-template-rows: 80px 80px;
   }
 }
@@ -205,21 +205,12 @@ a, a:visited, a:hover {
 .socials a[href*=insta] {
   background-image: linear-gradient(45deg, #FFD522 -10.92%, #F1000B 48.02%, #B900B3 106.81%);
 }
-.socials a[href*=twitter] {
-  background-color: #1d9bf0;
-}
-.socials a[href*=twitter] img {
-  height: 50%;
-}
 .socials a[href*=tumblr] {
   background-color: #001935;
 }
 .socials a[href*=tumblr] img {
   margin-top: -5px;
   filter: drop-shadow(0px 4px #fe00fd);
-}
-.socials a[href*=toot] {
-  background-image: linear-gradient(0deg, #3145c6 0%, #5b95fb 100%);
 }
 .socials a[href*=github] {
   background-color: #24292f;
@@ -233,10 +224,10 @@ a, a:visited, a:hover {
 .socials a[href*=tiktok] {
   background-color: #010101;
 }
-.socials a[href*=onlyfans] {
+.socials a.onlyfans {
   background-color: #fff;
 }
-.socials a[href*=onlyfans] img {
+.socials a.onlyfans img {
   height: 90%;
 }
 
